@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1040763935748",
+    "firebase_url": "https://seekwifi.firebaseio.com",
+    "project_id": "seekwifi",
+    "storage_bucket": "seekwifi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040763935748:android:2bdafac18f3b7fa2",
+        "android_client_info": {
+          "package_name": "com.example.wifigo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040763935748-j04ci5vj199up1s9e1u9t7ck8ot16n5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgr6VMv8_4-hOxks-iUUGqjr7ZKIgV-Qk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
