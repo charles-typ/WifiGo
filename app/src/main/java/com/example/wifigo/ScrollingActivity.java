@@ -62,6 +62,26 @@ public class ScrollingActivity extends AppCompatActivity {
     }
     public void opendatabase(){
         Intent intent = new Intent(this, DatabaseActivity.class);
-        startActivity(intent);
+        while(true) {
+            double[] args = {0.1, 0.1};
+            intent.putExtra("location", args);
+            startActivityForResult(intent, 1);
+            finishActivity(1);
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+                String ret = data.getDataString();
+                String[] output = ret.split("_");
+                //TODO add UI logic here
+                // Do something with the contact here (bigger example below)
+            }
+        }
     }
 }
