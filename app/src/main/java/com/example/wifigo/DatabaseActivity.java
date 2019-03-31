@@ -16,6 +16,12 @@ import com.google.firebase.database.ChildEventListener;
 import android.widget.Toast;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiInfo;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.Manifest.permission;
+import java.util.jar.Manifest;
+import android.net.wifi.SupplicantState;
+
 
 public class DatabaseActivity extends AppCompatActivity {
     private static final String TAG = "DatabaseActivity";
@@ -25,18 +31,44 @@ public class DatabaseActivity extends AppCompatActivity {
     private static double max_x;
     private static double max_y;
     protected static Integer rssi;
+    private static final int LOCATION = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         setContentView(R.layout.activity_main);
     }
-
     @Override
     protected void onStart() {
         super.onStart();
+        tryToReadSSID();
         basicReadWrite();
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED && requestCode == LOCATION){
+            //User allowed the location and you can read it now
+            tryToReadSSID();
+        }
+    }
+
+    private void tryToReadSSID() {
+        //If requested permission isn't Granted yet
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //Request permission from user
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION);
+        }else{//Permission already granted
+            wifimg = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            wifiin= wifimg.getConnectionInfo();
+            if(wifiin.getSupplicantState() == SupplicantState.COMPLETED){
+                String ssid = wifiin.getSSID();//Here you can access your SSID
+                System.out.println(ssid);
+            }
+        }
+    }
+
+
     public void basicReadWrite() {
         // FIXME
         wifimg = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
