@@ -1,5 +1,6 @@
 package com.example.wifigo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class DatabaseActivity extends AppCompatActivity {
     private WifiInfo wifiin;
     private static double max_x;
     private static double max_y;
-
+    protected static Integer rssi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +39,13 @@ public class DatabaseActivity extends AppCompatActivity {
     }
     public void basicReadWrite() {
         // FIXME
+        wifimg = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        wifiin = wifimg.getConnectionInfo();
         Double x = 1.0;
         Double y = 1.0;
         String ssid = wifiin.getSSID();
-        final int rssi = wifiin.getRssi();
-        int speed = wifiin.getLinkSpeed();
+        rssi = wifiin.getRssi();
+        Integer speed = wifiin.getLinkSpeed();
         Data instance = new Data(x, y, rssi, ssid, speed);
         mDatabase.child(ssid).setValue(instance);
 
@@ -53,7 +56,16 @@ public class DatabaseActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
                 // A new comment has been added, add it to the displayed list
-                Data value = dataSnapshot.getValue(Data.class);
+                Double tmp_x, tmp_y;
+                Integer tmp_s, tmp_r;
+                String tmp_ssid;
+                tmp_x =  (Double)dataSnapshot.child("x").getValue();
+                tmp_y =  (Double)dataSnapshot.child("y").getValue();
+                tmp_s =  (Integer) dataSnapshot.child("strength").getValue();
+                tmp_r =  (Integer) dataSnapshot.child("rate").getValue();
+                tmp_ssid =  (String)dataSnapshot.child("SSID").getValue();
+                //Data value = dataSnapshot.getValue(Data.class);
+                Data value = new Data(tmp_x, tmp_y, tmp_s, tmp_ssid, tmp_r);
                 if (value.strength > rssi) {
                     max_x = value.x;
                     max_y = value.y;

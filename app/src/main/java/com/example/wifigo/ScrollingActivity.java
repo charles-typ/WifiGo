@@ -60,10 +60,10 @@ public class ScrollingActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void opendatabase(){
-        while(true) {
+     //   while(true) {
             Intent intent = new Intent(this, DatabaseActivity.class);
             startActivityForResult(intent, 1);
-        }
+     //   }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

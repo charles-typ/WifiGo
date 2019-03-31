@@ -3,15 +3,15 @@ package com.example.wifigo;
 public class Data {
     public Double x;
     public Double y;
-    public int strength;
+    public Integer strength;
     public String SSID;
-    public int rate;
+    public Integer rate;
 
     public Data() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Data(Double x, Double y, int strength, String SSID, int rate) {
+    public Data(Double x, Double y, Integer strength, String SSID, Integer rate) {
         this.x = x;
         this.y = y;
         this.strength = strength;
