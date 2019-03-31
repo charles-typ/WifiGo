@@ -24,6 +24,7 @@ public class DatabaseActivity extends AppCompatActivity {
         super.onStart();
         basicReadWrite();
     }
+
     public void basicReadWrite() {
         // [START write_message]
         // Write a message to the database
