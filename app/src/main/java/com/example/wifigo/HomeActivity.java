@@ -9,12 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-
 import com.github.jorgecastilloprz.FABProgressCircle;
 import com.github.jorgecastilloprz.listeners.FABProgressListener;
 
 public class HomeActivity extends AppCompatActivity {
 
+    public Double x;
+    public Double y;
     public static FABProgressCircle fabView;
 //
 //    public HomeActivity() {
@@ -72,16 +73,26 @@ public class HomeActivity extends AppCompatActivity {
 
 //    final FABProgressCircle fabView = (FABProgressCircle) findViewById(R.id.fabProgressCircle);
     public void waitForResult(){
-        int SPLASH_TIME_OUT = 2000;
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run(){
-                Intent Intent = new Intent(HomeActivity.this, MapsActivity.class);
-                fabView.beginFinalAnimation();
-                startActivity(Intent);
-                finish();
+        Intent intent = new Intent(this, DatabaseActivity.class);
+        startActivityForResult(intent, 1);
+        Intent Intent = new Intent(HomeActivity.this, MapsActivity.class);
+        fabView.beginFinalAnimation();
+        startActivity(Intent);
+        finish();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+                String ret = data.getStringExtra("result");
+                String[] output = ret.split("_");
+                x = Double.parseDouble(output[0]);
+                y = Double.parseDouble(output[1]);
             }
-        }, SPLASH_TIME_OUT);
-
+        }
     }
 }
