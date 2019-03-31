@@ -12,7 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import android.widget.Toast;
 
 public class DatabaseActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "DatabaseActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
