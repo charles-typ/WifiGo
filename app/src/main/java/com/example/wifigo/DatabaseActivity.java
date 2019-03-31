@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import android.widget.Toast;
 
 public class DatabaseActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -18,13 +19,14 @@ public class DatabaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-/*
+
     @Override
     protected  void onStart() {
         super.onStart();
         basicReadWrite();
     }
-    */
+
+
     public void basicReadWrite() {
         // [START write_message]
         // Write a message to the database
@@ -43,6 +45,7 @@ public class DatabaseActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
                 Log.d(TAG, "Value is: " + value);
+                Toast.makeText(getBaseContext(), value, Toast.LENGTH_LONG).show();
             }
 
             @Override
