@@ -75,8 +75,8 @@ public class HomeActivity extends AppCompatActivity {
     public void waitForResult(){
         Intent intent = new Intent(this, DatabaseActivity.class);
         startActivityForResult(intent, 1);
-        Intent Intent = new Intent(HomeActivity.this, MapsActivity.class);
         fabView.beginFinalAnimation();
+        Intent Intent = new Intent(HomeActivity.this, MapsActivity.class);
         startActivity(Intent);
         finish();
     }
