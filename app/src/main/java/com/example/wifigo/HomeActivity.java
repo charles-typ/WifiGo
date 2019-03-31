@@ -73,13 +73,22 @@ public class HomeActivity extends AppCompatActivity {
 
 //    final FABProgressCircle fabView = (FABProgressCircle) findViewById(R.id.fabProgressCircle);
     public void waitForResult(){
+        int SPLASH_TIME_OUT = 2000;
         Intent intent = new Intent(this, DatabaseActivity.class);
         startActivityForResult(intent, 1);
-        fabView.beginFinalAnimation();
-        Intent Intent = new Intent(HomeActivity.this, MapsActivity.class);
-        startActivity(Intent);
-        finish();
+
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                Intent Intent = new Intent(HomeActivity.this, MapsActivity.class);
+                fabView.beginFinalAnimation();
+                startActivity(Intent);
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
+
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
