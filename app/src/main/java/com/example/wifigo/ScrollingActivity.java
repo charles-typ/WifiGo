@@ -73,7 +73,7 @@ public class ScrollingActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
-                String ret = data.getDataString();
+                String ret = data.getStringExtra("result");
                 String[] output = ret.split("_");
                 //TODO add UI logic here
                 // Do something with the contact here (bigger example below)
