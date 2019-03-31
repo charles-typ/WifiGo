@@ -39,7 +39,6 @@ public class ScrollingActivity extends AppCompatActivity {
         Button butt = findViewById(R.id.button);
         butt.setOnClickListener(new View.OnClickListener(){
             @Override
-
             public void onClick(View V) {
                 opendatabase();
             }
@@ -61,12 +60,9 @@ public class ScrollingActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void opendatabase(){
-        Intent intent = new Intent(this, DatabaseActivity.class);
         while(true) {
-            double[] args = {0.1, 0.1};
-            intent.putExtra("location", args);
+            Intent intent = new Intent(this, DatabaseActivity.class);
             startActivityForResult(intent, 1);
-            finishActivity(1);
         }
     }
     @Override
