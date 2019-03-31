@@ -40,9 +40,12 @@ public class ScrollingActivity extends AppCompatActivity {
         butt.setOnClickListener(new View.OnClickListener(){
             @Override
 
-            public void onClick(View V){
-                openMap();
+            public void onClick(View V) {
+                opendatabase();
             }
+            //public void onClick(View V){
+             //   openMap();
+            //}
         });
     }
 
@@ -55,6 +58,10 @@ public class ScrollingActivity extends AppCompatActivity {
 
     public void openMap(){
         Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+    public void opendatabase(){
+        Intent intent = new Intent(this, DatabaseActivity.class);
         startActivity(intent);
     }
 }

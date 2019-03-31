@@ -19,6 +19,11 @@ public class DatabaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    protected  void onStart() {
+        super.onStart();
+        basicReadWrite();
+    }
     public void basicReadWrite() {
         // [START write_message]
         // Write a message to the database
