@@ -44,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         fabView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
+                fabView.setEnabled(false);
                 fabView.show();
                 waitForResult();
             }
